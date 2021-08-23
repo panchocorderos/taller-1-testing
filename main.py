@@ -32,6 +32,7 @@ class Person:
 
 
 
+
 # Requirements
 # age >= 15 and age <= 70
 # imc = weight/height**2
@@ -46,27 +47,27 @@ def calcularEdad(fecha):
 
 if __name__ == "__main__":
 
-  # print("------------- APP IMC -------------")
-  # name = input("|  Ingrese nombre: ")
+  print("------------- APP IMC -------------")
+  name = input("|  Ingrese nombre: ")
 
-  # bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
-  # edad = calcularEdad(bday) # entre 1950 a 2005
+  bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
+  edad = calcularEdad(bday) # entre 1950 a 2005
 
-  # while not edad:
-  #   print("      -------- Error --------")
-  #   print("      Debe tener entre 15 a 70 años")
-  #   bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
-  #   edad = calcularEdad(bday)  # entre 1950 a 2005
+  while not edad:
+    print("      -------- Error --------")
+    print("      Debe tener entre 15 a 70 años")
+    bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
+    edad = calcularEdad(bday)  # entre 1950 a 2005
 
-  # isAthlete = input("|  ¿Hace ejercicio?[S/N]: ")
-  # gender = input("|  Genero [M/F]: ")
-  # weight = input("|  Peso[K]: ")
-  # height = input("|  Altura[M]: ")
+  isAthlete = input("|  ¿Hace ejercicio?[S/N]: ")
+  gender = input("|  Genero [M/F]: ")
+  weight = input("|  Peso[K]: ")
+  height = input("|  Altura[M]: ")
 
-  # dateNow = datetime.now()
+  dateNow = datetime.now()
 
-  # PruebaUno = Person(name, bday, isAthlete, gender, str(dateNow.date()), weight, height)
-  # PruebaUno.showInfo()
+  PruebaUno = Person(name, bday, isAthlete, gender, str(dateNow.date()), weight, height)
+  PruebaUno.showInfo()
 
-  PruebaDos = Person("Daniel", "24/12/1999", "N", "M", "22/08/2021", "50", "2")
-  PruebaDos.showInfo()
+  # PruebaDos = Person("Daniel", "24/12/1999", "N", "M", "22/08/2021", "50", "2")
+  # PruebaDos.showInfo()
