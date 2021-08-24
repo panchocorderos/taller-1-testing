@@ -40,11 +40,22 @@ def validarNombre(name):
 
 
 def validarIsAthlete(Athlete):
-  # Acepta solo S s N n ademas de un espacio al final
-  # valida ss NN SN
-  regex = re.compile(r"^[sS-nN\s]+$", re.U)
+  # Acepta solo si y no
+  regex = re.compile(r'^(?:si|no)$', re.U)
   print(Athlete, regex.match(Athlete) is not None)
 
+def validarGender(gender):
+
+  # Acepta solo M y F
+  regex = re.compile(r'^(?:m|f)$', re.U)
+  print(gender, regex.match(gender) is not None)
+
+def validarNumero(num):
+  # Acepta solo numeros
+  # regex = re.compile(r'^(\d{1})([.]?[0-9]{0,3})$', re.U)
+
+  # print(num, regex.match(num) is not None)
+  pass
 
 def calcularEdad(fecha):
   dateNow = datetime.now()
@@ -67,10 +78,13 @@ if __name__ == "__main__":
     bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
     edad = calcularEdad(bday)  # entre 1950 a 2005
 
-  isAthlete = input("|  ¿Hace ejercicio?[S/N]: ")
-  gender = input("|  Genero [M/F]: ")
-  weight = input("|  Peso[K]: ")
-  height = input("|  Altura[M]: ")
+  isAthlete = input("|  ¿Hace ejercicio?[Si/No]: ").strip().lower()
+
+  gender = input("|  Genero [M/F]: ").strip().lower()
+
+  weight = input("|  Peso[K]: ").strip().replace(",", ".")
+  height = input("|  Altura[M]: ").strip().replace(",", ".")
+
 
   dateNow = datetime.now()
 
