@@ -13,18 +13,53 @@ class Person:
         self.dateWeight = dateWeight #date weigh
         self.weight = weight # weight in kg
         self.height = height #height in mt
+        self.imc = 0
+        self.interpretation = " "
+
+  def getIMC(self):
+    self.imc = (float(self.weight)/(float(self.height)**2))
+
+  def getInterpretation(self):
+    if (self.gender == "M"):
+      if (self.imc < 20):
+        self.interpretation = "BAJO PESO"
+      elif (self.imc >= 20 and self.imc <= 24.9):
+        self.interpretation = "NORMAL"
+      elif  (self.imc >= 25 and self.imc <= 29.9):
+        self.interpretation = "OBSESIDAD LEVE"
+
+      elif  (self.imc >= 30 and self.imc <= 40):
+        self.interpretation = "OBESIDAD SEVERA"
+      elif  (self.imc < 40):
+        self.interpretation = "OBESIDAD MUY SEVERA"
+
+    else:
+      if (self.imc < 20):
+        self.interpretation = "BAJO PESO"
+      elif (self.imc >= 20 and self.imc <= 23.9):
+        self.interpretation = "NORMAL"
+      elif (self.imc >= 24 and self.imc <= 28.9):
+        self.interpretation = "OBSESIDAD LEVE"
+
+      elif (self.imc >= 29 and self.imc <= 37):
+        self.interpretation = "OBESIDAD SEVERA"
+      elif (self.imc < 37):
+        self.interpretation = "OBESIDAD MUY SEVERA"
 
 
   def showInfo(self):
     print("-------- Info --------")
     print("|")
-    print("|  "+self.name)
-    print("|  "+self.bday)
-    print("|  "+self.isAthlete)
-    print("|  "+self.gender)
-    print("|  "+self.dateWeight)
-    print("|  "+self.weight)
-    print("|  "+self.height)
+    print("|  Nombre: "+self.name)
+    print("|  Fecha Nacimiento: "+self.bday)
+    print("|  ¿Hace ejercicio?: "+self.isAthlete)
+    print("|  Genero: "+self.gender)
+    print("|  Peso: "+self.weight)
+    print("|  Altura: "+self.height)
+    print("|  IMC: "+str(self.imc))
+    print("|  Interpretacion: "+self.interpretation)
+    print("|")
+    print("|  Fecha Registro: "+self.dateWeight)
     print("|")
     print("----------------------")
 
@@ -133,9 +168,11 @@ if __name__ == "__main__":
     height = input("|  Altura[M]: ").strip().replace(",", ".")
     heightValidar = validarheight(height)
 
-  dateNow = datetime.now()
+  dateNow = datetime.now().strftime("%d/%m/%Y")
 
-  PruebaUno = Person(name, bday, isAthlete, gender, str(dateNow.date()), weight, height)
+  PruebaUno = Person(name, bday, isAthlete, gender, str(dateNow), weight, height)
+  PruebaUno.getIMC()
+  PruebaUno.getInterpretation()
   PruebaUno.showInfo()
 
   # PruebaDos = Person("Daniel", "24/12/1999", "N", "M", "22/08/2021", "50", "2")
