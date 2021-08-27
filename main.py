@@ -30,7 +30,7 @@ class Person:
 
       elif  (self.imc >= 30 and self.imc <= 40):
         self.interpretation = "OBESIDAD SEVERA"
-      elif  (self.imc < 40):
+      elif  (self.imc > 40):
         self.interpretation = "OBESIDAD MUY SEVERA"
 
     else:
@@ -43,7 +43,7 @@ class Person:
 
       elif (self.imc >= 29 and self.imc <= 37):
         self.interpretation = "OBESIDAD SEVERA"
-      elif (self.imc < 37):
+      elif (self.imc > 37):
         self.interpretation = "OBESIDAD MUY SEVERA"
 
 
@@ -163,22 +163,22 @@ def ingresarDatos():
 
   weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
   weightValidar = validarWeight(weight)
-  while (not weightValidar) or (float(weight) == 0):
+  while (not weightValidar) or (weight == 0):
 
-    if float(weight) == 0:
+    if weight == 0:
       print("\nError: no se puede ingresar 0\n")
-      weight = input("|  Peso[K]: ").strip().replace(",", ".")
+      weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
       weightValidar = validarWeight(weight)
     else:
       print("Error: solo es valido hasta tres digitos o hasta tres digitos y dos decimales")
-      weight = input("|  Peso[K]: ").strip().replace(",", ".")
+      weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
       weightValidar = validarWeight(weight)
 
   height = input("|  Altura[M]: ").strip().replace(",", ".")
   heightValidar = validarheight(height)
-  while (not heightValidar) or (float(height) == 0):
+  while (not heightValidar) or (height == 0):
     print(height)
-    if float(height) == 0:
+    if height == 0:
       print("\nError: no se puede ingresar 0\n")
       height = input("|  Altura[M]: ").strip().replace(",", ".")
       heightValidar = validarheight(height)
