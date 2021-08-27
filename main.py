@@ -69,7 +69,6 @@ def ingresarDatos():
   print("|")
   print("----------------------")
   dateNow = datetime.now().strftime("%d/%m/%Y")
-  # print(edad)
   clear()
   return Person(name, bday, str(edad[1]), isAthlete, gender, str(dateNow), height)
 
