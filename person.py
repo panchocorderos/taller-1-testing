@@ -42,7 +42,7 @@ class Person:
         self.interpretation = "OBESIDAD MUY SEVERA"
 
 
-  def showInfo(self):
+  def __str__(self):
     print("\n\n")
     print("-------- Info --------")
     print("|")
