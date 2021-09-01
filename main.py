@@ -56,6 +56,7 @@ def ingresarDatos():
   else:
     prRed('|  El usuario ya ha sido registrado.')
     clear()
+    return "isRegistered"
 
 if __name__ == "__main__":
   storagePerson = []
@@ -74,15 +75,18 @@ if __name__ == "__main__":
     clear()
     if opcion == "1":
       nuevoIngreso = ingresarDatos()
-      storagePerson.append(nuevoIngreso)
+      if nuevoIngreso != "isRegistered":
+        storagePerson.append(nuevoIngreso)
+      else:
+        pass
     elif opcion == "2":
       if len(storagePerson) == 0:
         prRed('|  No hay datos registrados\n')
         clear()
-      else:  
+      else:
         print("|  Lista de ingresos")
         for person in storagePerson:
-          print("|  " + person.name)
+          print("|   - " + person.name)
         nameSearch = input("|  Ingrese nombre para calcular IMC: ")
         nameValidar = validation.validarNombre(nameSearch)
         if not nameValidar:
@@ -98,28 +102,18 @@ if __name__ == "__main__":
               isAthleteValidar = validation.validarIsAthlete(isAthlete)
             height = input("|  Altura[M]: ").strip().replace(",", ".")
             heightValidar = validation.validarheight(height)
-            while (not heightValidar) or (height == 0):
-              print(height)
-              if height == 0:
-                print("\nError: no se puede ingresar 0\n")
-                height = input("|  Altura[M]: ").strip().replace(",", ".")
-                heightValidar = validation.validarheight(height)
-              else:
-                print("Error: Solo es valido un digito o un digito y hasta 3 decimales")
-                height = input("|  Altura[M]: ").strip().replace(",", ".")
-                heightValidar = validation.validarheight(height)
+
+            while (not heightValidar) or (float(height) == 0):
+              print("Error: Solo es valido un digito o un digito y hasta 3 decimales | La altura no puede ser 0")
+              height = input("|  Altura[M]: ").strip().replace(",", ".")
+              heightValidar = validation.validarheight(height)
+
             weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
             weightValidar = validation.validarWeight(weight)
-            while (not weightValidar) or (weight == 0):
-
-              if weight == 0:
-                print("\nError: no se puede ingresar 0\n")
-                weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
-                weightValidar = validation.validarWeight(weight)
-              else:
-                print("Error: solo es valido hasta tres digitos o hasta tres digitos y dos decimales")
-                weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
-                weightValidar = validation.validarWeight(weight)
+            while (not weightValidar) or (float(weight) == 0):
+              print("Error: solo es valido hasta tres digitos o hasta tres digitos y dos decimales | El peso no puede ser 0")
+              weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
+              weightValidar = validation.validarWeight(weight)
 
             isRegistered[0].setHeight(height)
             isRegistered[0].setIsAthlete(isAthlete)
