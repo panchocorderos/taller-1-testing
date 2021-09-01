@@ -25,7 +25,9 @@ def ingresarDatos():
   if len(isRegistered) == 0:
     bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
     edad = validation.calcularEdad(bday) # entre 1950 a 2005
+
     while (edad == "Error") or (not edad[0]):
+
       if not edad[0]:
         print("      -------- Error --------")
         print("      Debe tener entre 15 a 70 años")

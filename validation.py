@@ -40,7 +40,7 @@ def calcularEdad(fecha):
 
     return "Error"
   else:
-    return [True, edad] if(edad >= 15 and edad <= 70)else(False)
+    return [True, edad] if(edad >= 15 and edad <= 70)else([False, edad])
 
 
 
