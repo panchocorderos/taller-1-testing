@@ -9,7 +9,7 @@ def prLightGray(skk): print("\033[97m {}\033[00m" .format(skk))
 
 
 def clear():
-  input("Press Enter to continue...")
+  input("Presiona enter para continuar...")
   os.system('cls')
   os.system('clear')
 
@@ -36,13 +36,6 @@ def ingresarDatos():
         bday = input("|  Ingrese Fecha de nacimiento[24/12/1999]: ")
         edad = validation.calcularEdad(bday)
 
-    isAthlete = input("|  ¿Hace ejercicio?[Si/No]: ").strip().upper()
-    isAthleteValidar = validation.validarIsAthlete(isAthlete)
-    while not isAthleteValidar:
-      print("\nError: Solo es valido [Si / No]\n")
-      isAthlete = input("|  ¿Hace ejercicio?[Si/No]: ").strip().upper()
-      isAthleteValidar = validation.validarIsAthlete(isAthlete)
-
     gender = input("|  Genero [M/F]: ").strip().upper()
     genderValidar = validation.validarGender(gender)
     while not genderValidar:
@@ -53,29 +46,13 @@ def ingresarDatos():
       gender = "Masculino"
     else:
       gender = "Femenino"
-
-
-    height = input("|  Altura[M]: ").strip().replace(",", ".")
-    heightValidar = validation.validarheight(height)
-    while (not heightValidar) or (height == 0):
-      print(height)
-      if height == 0:
-        print("\nError: no se puede ingresar 0\n")
-        height = input("|  Altura[M]: ").strip().replace(",", ".")
-        heightValidar = validation.validarheight(height)
-      else:
-        print("Error: Solo es valido un digito o un digito y hasta 3 decimales")
-        height = input("|  Altura[M]: ").strip().replace(",", ".")
-        heightValidar = validation.validarheight(height)
-
-
     print("|")
     print("----------------------")
     dateNow = datetime.now().strftime("%d/%m/%Y")
     clear()
     prGreen("Usuario ingresado")
     clear()
-    return Person(name, bday, str(edad[1]), isAthlete, gender, str(dateNow), height)
+    return Person(name, bday, str(edad[1]), gender, str(dateNow))
   else:
     prRed('|  El usuario ya ha sido registrado.')
     clear()
@@ -84,7 +61,7 @@ if __name__ == "__main__":
   storagePerson = []
   ciclo = True
   while ciclo:
-    print("------------- APP IMC -------------")
+    prGreen("------------- APP IMC -------------")
     print("|")
     print("|  | 1 | Ingresar usuario")
     print("|  | 2 | Calcular IMC")
@@ -113,6 +90,24 @@ if __name__ == "__main__":
         else:
           isRegistered = list(filter(lambda person: person.name == nameSearch, storagePerson))
           if len(isRegistered) > 0:
+            isAthlete = input("|  ¿Hace ejercicio?[Si/No]: ").strip().upper()
+            isAthleteValidar = validation.validarIsAthlete(isAthlete)
+            while not isAthleteValidar:
+              print("\nError: Solo es valido [Si / No]\n")
+              isAthlete = input("|  ¿Hace ejercicio?[Si/No]: ").strip().upper()
+              isAthleteValidar = validation.validarIsAthlete(isAthlete)
+            height = input("|  Altura[M]: ").strip().replace(",", ".")
+            heightValidar = validation.validarheight(height)
+            while (not heightValidar) or (height == 0):
+              print(height)
+              if height == 0:
+                print("\nError: no se puede ingresar 0\n")
+                height = input("|  Altura[M]: ").strip().replace(",", ".")
+                heightValidar = validation.validarheight(height)
+              else:
+                print("Error: Solo es valido un digito o un digito y hasta 3 decimales")
+                height = input("|  Altura[M]: ").strip().replace(",", ".")
+                heightValidar = validation.validarheight(height)
             weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
             weightValidar = validation.validarWeight(weight)
             while (not weightValidar) or (weight == 0):
@@ -126,6 +121,16 @@ if __name__ == "__main__":
                 weight = input("|  Peso[Kg]: ").strip().replace(",", ".")
                 weightValidar = validation.validarWeight(weight)
 
+            isRegistered[0].setHeight(height)
+            isRegistered[0].setIsAthlete(isAthlete)
+            isRegistered[0].setWeight(weight)
+            isRegistered[0].setIMC()
+            isRegistered[0].setInterpretation()
+            print(isRegistered[0])
+            clear()
+          else:
+            prRed("Este usuario no existe")
+            clear()
     elif opcion == "3":
       ciclo = False
     else:

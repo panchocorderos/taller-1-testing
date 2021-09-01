@@ -1,20 +1,29 @@
 class Person:
-  def __init__(self, name, bday, age, isAthlete, gender, dateWeight, height):
+  def __init__(self, name, bday, age, gender, dateWeight):
         self.name = name #name person
         self.bday = bday #birth day date
         self.age = age
-        self.isAthlete = isAthlete #bool physical condition
+        self.isAthlete = None #bool physical condition
         self.gender = gender #gender (man or woman)
         self.dateWeight = dateWeight #date weigh
-        # self.weight = weight # weight in kg
-        self.height = height #height in mt
-        self.imc = 0
+        self.weight = None # weight in kg
+        self.imc = None
+        self.height = None #height in mt
         self.interpretation = " "
 
-  def getIMC(self):
+  def setIMC(self):
     self.imc = (float(self.weight)/(float(self.height)**2))
 
-  def getInterpretation(self):
+  def setHeight(self, height):
+    self.height = height
+
+  def setIsAthlete(self, isAthlete):
+    self.isAthlete = isAthlete
+
+  def setWeight(self, weight):
+    self.weight = weight
+    
+  def setInterpretation(self):
     if (self.gender == "M"):
       if (self.imc < 20):
         self.interpretation = "BAJO PESO"
@@ -43,20 +52,18 @@ class Person:
 
 
   def __str__(self):
-    print("\n\n")
-    print("-------- Info --------")
-    print("|")
-    print("|  Nombre: "+self.name)
-    print("|  edad: "+self.age)
-    # print("|  Fecha Nacimiento: "+self.bday)
-    print("|  ¿Hace ejercicio?: "+self.isAthlete)
-    print("|  Genero: "+self.gender)
-    # print("|  Peso: "+self.weight + " Kg")
-    print("|  Altura: "+self.height + " M")
-    # print("|  IMC: "+str(self.imc))
-    # print("|  Interpretacion: "+self.interpretation)
-    print("|")
-    print("|  Fecha Registro: "+self.dateWeight)
-    print("|")
-    print("----------------------")
-    print("\n")
+    return '\n\n'\
+      '-------- Info --------\n'\
+      '|\n'\
+      '|  Nombre: {0}\n'\
+      '|  Edad: {1}\n'\
+      '|  ¿Hace ejercicio?: {2}\n'\
+      '|  Genero: {3}\n'\
+      '|  Peso: {4}\n'\
+      '|  Altura: {5}\n'\
+      '|  IMC: {6}\n'\
+      '|  Interpretacion: {7}\n'\
+      '|\n'\
+      '|  Fecha Registro: {8}\n'\
+      '|\n'\
+      '----------------------\n'.format(self.name, self.age, self.isAthlete, self.gender, self.weight, self.height, self.imc, self.interpretation, self.dateWeight)
